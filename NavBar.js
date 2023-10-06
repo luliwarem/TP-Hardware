@@ -39,9 +39,9 @@ import {
                 iconName = focused ? "call" : "call-outline";
               } else if (rn === contactosName) {
                 iconName = focused ? "person" : "person-outline";
-              } else if (rn === climaName) {
-                iconName = focused ? "qr-code" : "qr-code-outline";
               } else if (rn === QRName) {
+                iconName = focused ? "qr-code" : "qr-code-outline";
+              } else if (rn === climaName) {
                 iconName = focused ? "partly-sunny" : "partly-sunny-outline";
               } 
 
@@ -52,7 +52,7 @@ import {
             activeTintColor: "blue",
             inactiveTintColor: "gray",
             labelStyle: { fontSize: 10 },
-            tabBarStyle: { padding: 10, height: 100 },
+            tabBarStyle: { padding: 10, height: 100},
           }}
         >
           <Tab.Screen name={numeroEmergenciaName} component={NumeroEmergencia} />
