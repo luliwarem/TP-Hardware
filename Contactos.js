@@ -1,13 +1,15 @@
 import { View, StyleSheet, FlatList, Text } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as Contacts from "expo-contacts";
 
 export default function Contactos() {
+  const [contactos, setContactos] = useState([])
+
   useEffect(() => {
     (async () => {
       const { status } = await Contacts.requestPermissionsAsync();
       if (status === "granted") {
-        const { data } = await Contacts.getContactsAsync({
+        const {data}  = await Contacts.getContactsAsync({
           fields: [Contacts.Fields.Name, Contacts.Fields.LastName, Contacts.Fields.PhoneNumbers],
         });
 
@@ -15,28 +17,32 @@ export default function Contactos() {
           const contact = data[0];
           console.log(contact);
         }
+
+        setContactos(data)
       }
     })();
   }, []);
 
-  const Item = ({ Name, LastName, PhoneNumber }) => (
+  const Item = ({ Name, LastName, PhoneNumbers}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {Name} {LastName}
       </Text>
-      <Text style={styles.title}>{PhoneNumber[1]}</Text>
+      {PhoneNumbers.map((p) => (
+        <Text style={styles.title}>{p.number}</Text>
+      ))}
     </View>
   );
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        data={contactos}
         renderItem={({ item }) => (
           <Item
-            name={item.name}
-            lastName={item.las}
-            phoneNumber={item.phoneNumber}
+            Name={item.firstName ?? "" }
+            LastName={item.lastName ?? ""}
+            PhoneNumbers={item.phoneNumbers ?? []}
           />
         )}
       />
@@ -56,7 +62,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 10,
     marginBottom: 15,
-    placeholderTextColor: "gray",
     marginTop: 7,
   },
   image: {
