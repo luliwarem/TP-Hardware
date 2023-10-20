@@ -1,5 +1,7 @@
 import { View, StyleSheet, Text } from "react-native";
 import React, { useEffect, useState } from "react";
+import QRCode from "react-qr-code";
+
 import * as Location from "expo-location";
 import axios from "axios";
 
@@ -22,6 +24,7 @@ export default function Clima() {
         `https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&appid=b8101b9c7d939a6aa5f0a033fbef87fa&units=metric`
       ); // acá hacemos la consulta de axios a la API
       setWeather(response.data);
+      console.log(response.data)
     })();
   }, []);
 
@@ -33,12 +36,20 @@ export default function Clima() {
   }
 
   return (
+
     <View style={styles.container}>
-      <Text style={styles.title}>{weather?.main?.temp}</Text>
-      <Text style={styles.title}>{weather?.main?.name}</Text>
-      <Text style={styles.title}>{weather?.weather?.main}</Text>
-
-
+      
+     <Text style={styles.title}>Temperatura en {weather?.name}: {weather?.main?.temp}</Text> 
+     <Text style={styles.title}>Clima: {weather?.weather?.[0].main}</Text>
+     <View style={styles.container}>
+      <QRCode
+        size={600}
+        style={{ height: "auto", maxWidth: "80%", width: "100%" }}
+        value="Luciana Waremkraut"
+        viewBox={`0 0 256 256`}
+        fgColor="#000000"
+      />
+    </View>
     </View>
   );
 }

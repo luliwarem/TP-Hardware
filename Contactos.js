@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   item: {
-    width: 300,
+    width: 400,
     backgroundColor: "#fff",
     borderRadius: 20,
     shadowOffset: {
@@ -94,21 +94,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 17,
     marginTop: 7,
-  },
-  botoncito: {
-    width: "70%",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 20,
-    shadowOffset: {
-      width: 2,
-      height: 3,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    padding: 15,
-    marginVertical: 10,
-    fontFamily: "sans-serif",
-    marginBottom: 10,
   },
 });
