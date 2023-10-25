@@ -35,6 +35,7 @@ export default function Clima() {
     text = JSON.stringify(location);
   }
 
+  // https://www.npmjs.com/package/react-open-weather
   return (
 
     <View style={styles.container}>
@@ -42,13 +43,7 @@ export default function Clima() {
      <Text style={styles.title}>Temperatura en {weather?.name}: {weather?.main?.temp}</Text> 
      <Text style={styles.title}>Clima: {weather?.weather?.[0].main}</Text>
      <View style={styles.container}>
-      <QRCode
-        size={600}
-        style={{ height: "auto", maxWidth: "80%", width: "100%" }}
-        value="Luciana Waremkraut"
-        viewBox={`0 0 256 256`}
-        fgColor="#000000"
-      />
+      
     </View>
     </View>
   );
@@ -79,6 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    padd: 50
   },
   item: {
     width: 300,

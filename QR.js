@@ -59,22 +59,22 @@ export default function QR() {
               <Text style={styles.escanea}>Escanea el codigo QR</Text>
             )}
           </View>
-          <Button
-              style={styles.botoncito}
-              onPress={() => handleQR()}
-              title="Ver mi QR"
 
-            >
-            </Button>
           {showQR && (
-            <QRCode
-              size={600}
-              style={{ height: "auto", maxWidth: "80%", width: "100%" }}
-              value="Luciana Waremkraut"
-              viewBox={`0 0 256 256`}
-              fgColor="#000000"
-            />
+            <View style={styles.qrcontainer}>
+              <QRCode
+                size={350}
+                style={{ height: "auto", maxWidth: "80%", width: "100%" }}
+                value="Luciana Waremkraut"
+                viewBox={`0 0 256 256`}
+                fgColor="white"
+                bgColor="transparent"
+              />
+            </View>
           )}
+          <TouchableOpacity style={styles.botoncito} onPress={() => handleQR()}>
+            <Text style={styles.escanea}>Ver mi QR</Text>
+          </TouchableOpacity>
         </View>
       )}
     </>
@@ -85,14 +85,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   textContainer: {
     padding: 10,
     borderRadius: 10,
     backgroundColor: "black",
-    margin: -85,
+    marginTop: 10,
+    width: "60%",
   },
   escanea: {
     textAlign: "center",
@@ -106,18 +107,27 @@ const styles = StyleSheet.create({
     margin: 200,
   },
   botoncito: {
-    width: "70%",
+    backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 20,
+    borderRadius: 10,
     shadowOffset: {
       width: 2,
       height: 3,
     },
     shadowOpacity: 0.2,
     shadowRadius: 10,
-    padding: 15,
+    padding: 10,
     marginVertical: 10,
     marginBottom: 10,
+    width: "60%",
+  },
+  qrcontainer: {
+    backgroundColor: "black",
+    borderRadius: 20,
+    width: 400,
+    alignItems: "center",
+    height: 400,
+    justifyContent: "center",
   },
 });

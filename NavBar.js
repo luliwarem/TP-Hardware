@@ -55,10 +55,10 @@ import {
             tabBarStyle: { padding: 10, height: 100},
           }}
         >
-          <Tab.Screen name={numeroEmergenciaName} component={NumeroEmergencia} />
-          <Tab.Screen name={contactosName} component={Contactos} />
-          <Tab.Screen name={climaName} component={Clima} />
-          <Tab.Screen name={QRName} component={QR} />
+          <Tab.Screen name={numeroEmergenciaName} component={NumeroEmergencia} options={{ headerShown: false }}  />
+          <Tab.Screen name={contactosName} component={Contactos} options={{ headerShown: false }}  />
+          <Tab.Screen name={climaName} component={Clima} options={{ headerShown: false }}  />
+          <Tab.Screen name={QRName} component={QR} options={{ headerShown: false }}  />
         </Tab.Navigator>
       </NavigationContainer>
     );

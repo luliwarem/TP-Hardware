@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@daniel-szulc/react-weather-widget": "^1.0.1",
     "@expo/ngrok": "^4.1.0",
     "@react-native-async-storage/async-storage": "^1.19.3",
     "@react-navigation/bottom-tabs": "^6.5.9",
