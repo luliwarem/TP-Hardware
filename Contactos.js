@@ -1,16 +1,24 @@
 import { View, StyleSheet, FlatList, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Contacts from "expo-contacts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Contactos() {
-  const [contactos, setContactos] = useState([])
+  const [contactos, setContactos] = useState([]);
+  const [numeroEmergencia, setNumeroEmergencia] = useState(
+    AsyncStorage.getItem("Numero de Emergencia")
+  );
 
   useEffect(() => {
     (async () => {
       const { status } = await Contacts.requestPermissionsAsync();
       if (status === "granted") {
-        const {data}  = await Contacts.getContactsAsync({
-          fields: [Contacts.Fields.Name, Contacts.Fields.LastName, Contacts.Fields.PhoneNumbers],
+        const { data } = await Contacts.getContactsAsync({
+          fields: [
+            Contacts.Fields.Name,
+            Contacts.Fields.LastName,
+            Contacts.Fields.PhoneNumbers,
+          ],
         });
 
         if (data.length > 0) {
@@ -18,19 +26,23 @@ export default function Contactos() {
           console.log(contact);
         }
 
-        setContactos(data)
+        setContactos(data);
       }
     })();
   }, []);
 
-  const Item = ({ Name, LastName, PhoneNumbers}) => (
+  const Item = ({ Name, LastName, PhoneNumbers }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {Name} {LastName}
       </Text>
-      {PhoneNumbers.map((p) => (
-        <Text style={styles.title}>{p.number}</Text>
-      ))}
+      {PhoneNumbers.map((p) =>
+        p.number === numeroEmergencia ? (
+          <Text style={styles.numeroEmergencia}>{p.number}</Text>
+        ) : (
+          <Text style={styles.title}>{p.number}</Text>
+        )
+      )}
     </View>
   );
 
@@ -40,7 +52,7 @@ export default function Contactos() {
         data={contactos}
         renderItem={({ item }) => (
           <Item
-            Name={item.firstName ?? "" }
+            Name={item.firstName ?? ""}
             LastName={item.lastName ?? ""}
             PhoneNumbers={item.phoneNumbers ?? []}
           />
@@ -94,5 +106,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 17,
     marginTop: 7,
+  },
+  numeroEmergencia: {
+    backgroundColor: "red",
   },
 });

@@ -2,6 +2,7 @@ import { View, StyleSheet, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 
+
 import * as Location from "expo-location";
 import axios from "axios";
 
@@ -42,9 +43,7 @@ export default function Clima() {
       
      <Text style={styles.title}>Temperatura en {weather?.name}: {weather?.main?.temp}</Text> 
      <Text style={styles.title}>Clima: {weather?.weather?.[0].main}</Text>
-     <View style={styles.container}>
       
-    </View>
     </View>
   );
 }
